@@ -7,9 +7,11 @@ _LOGGER: logging.Logger = logging.getLogger(__name__)
 
 def main():
     _LOGGER.info("starting server")
+    loop = asyncio.get_event_loop()
+
     server = Server()
     server.load_apis()
-    loop = asyncio.get_event_loop()
+
     loop.create_task(server.start())
     loop.run_forever()
 

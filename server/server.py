@@ -2,13 +2,12 @@ import logging
 from server.sample import SampleAPI
 from aiohttp import web
 
-MAX_CLIENT_SIZE: int = 5
+MAX_CLIENT_SIZE: int = 1
 _LOGGER: logging.Logger = logging.getLogger(__name__)
 
 
 class Server:
     def __init__(self) -> None:
-        self._sampleapi = None
         self._site = None
         self._host = "127.0.0.1"
         self._port = 8080
@@ -45,10 +44,6 @@ class Server:
     @port.setter
     def port(self, port: str) -> None:
         self._port = int(port)
-
-    @property
-    def sampleapi(self):
-        return self._sampleapi
 
     async def start(self) -> None:
         """Run RESTful API webserver."""
